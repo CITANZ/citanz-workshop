@@ -1,0 +1,6 @@
+FROM bingc/serenity_chrome:latest
+
+WORKDIR /src/bdd
+COPY . .
+ENTRYPOINT ["mvn"]
+

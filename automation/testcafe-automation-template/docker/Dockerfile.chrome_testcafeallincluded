@@ -1,0 +1,21 @@
+FROM bingc/testcafe_chrome:latest
+
+ARG UID
+
+RUN useradd \
+    --create-home \
+    --shell /bin/bash \
+    --uid "$UID" \
+    testcafe_user
+
+WORKDIR /src/testcafe_bdd
+ENV NODE_TLS_REJECT_UNAUTHORIZED 0
+COPY . .
+RUN npm install && npm update
+RUN chown -R testcafe_user:testcafe_user /src/testcafe_bdd
+USER testcafe_user
+
+ENTRYPOINT ["./node_modules/.bin/cucumber-js"]
+
+
+

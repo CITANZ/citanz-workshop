@@ -1,0 +1,51 @@
+image: docker:stable
+
+variables:
+  DOCKER_HOST: tcp://localhost:2375
+services:
+  - docker:dind
+
+stages:
+  - build_automation_code
+  - run_bdd_test
+
+build_serenity_chrome_allincluded:
+  stage: build_automation_code
+  only:
+    - master
+  tags:
+    - kubernetes
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - docker build -t bingc/serenity_chrome_allincluded:${CI_PIPELINE_ID} -f docker/Dockerfile.serenity_chrome_allincluded .
+  after_script:
+    - docker tag bingc/serenity_chrome_allincluded:${CI_PIPELINE_ID}  bingc/serenity_chrome_allincluded:latest
+    - docker push bingc/serenity_chrome_allincluded:${CI_PIPELINE_ID}
+    - docker push bingc/serenity_chrome_allincluded:latest
+    - docker rmi bingc/serenity_chrome_allincluded:${CI_PIPELINE_ID}
+    - docker rmi bingc/serenity_chrome_allincluded:latest
+
+run_automation_in_headless_chrome:
+  stage: run_bdd_test
+  only:
+    - master
+  tags:
+    - kubernetes #bing-linux-local
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+    - docker pull bingc/serenity_chrome_allincluded:latest
+    - docker volume create build-${CI_PIPELINE_ID}
+  script:
+    - echo "======== Testing ${CI_COMMIT_REF_NAME} ========="
+    - docker run --name build-${CI_PIPELINE_ID} --rm -v build-${CI_PIPELINE_ID}:/src/bdd/target/site/serenity bingc/serenity_chrome_allincluded:latest -o verify -Dwebdriver.driver=chrome -Dcucumber.options="--tags @demo"
+  after_script:
+    - echo "======== Aggregating tests ========="
+    - docker run --name aggregate-${CI_PIPELINE_ID} -v build-${CI_PIPELINE_ID}:/src/bdd/target/site/serenity  bingc/serenity_chrome_allincluded:latest -o serenity:aggregate
+    - docker cp aggregate-${CI_PIPELINE_ID}:/src/bdd/target/site/serenity test-results
+    - docker rm aggregate-${CI_PIPELINE_ID}
+    - docker volume rm build-${CI_PIPELINE_ID}
+  artifacts:
+    paths:
+      - test-results
+    when: always
