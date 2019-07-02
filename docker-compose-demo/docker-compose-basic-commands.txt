@@ -1,0 +1,25 @@
+Docker-Compose Usage
+To run any of the examples, you should execute:
+
+$ docker-compose -f <compose-file> <options>
+
+
+
+Docker Compose Control Commands
+NOTE: On MAC OSX, you should omit the sudo from all your docker-compose commands
+
+Start
+$ sudo docker-compose -f <compose-file> up -d  # Create and start containers
+Stop
+$ sudo docker-compose -f <compose-file> stop  # Stop services
+Restart
+$ sudo docker-compose -f <compose-file> restart # Restart services
+Status
+$ sudo docker-compose -f <compose-file> ps # List containers
+Logs
+$ sudo docker-compose -f <compose-file> logs # View output from containers
+Remove
+$ sudo docker-compose -f <compose-file> rm # Remove stopped containers
+
+
+

@@ -1,0 +1,14 @@
+Docker compose document - https://docs.docker.com/compose/
+
+Compose file version - https://docs.docker.com/compose/compose-file/
+
+//Pull the images in local before the workshop
+docker pull docker.bintray.io/postgres:9.6.11
+
+docker pull docker.bintray.io/jfrog/artifactory-oss:6.9.1
+
+cd C:\gitrepos\citanz-workshop\docker-compose-demo
+
+docker-compose -f docker-compose-artifactory.yml up -d
+
+docker-compose -f .\docker-compose-artifactory.yml ps
