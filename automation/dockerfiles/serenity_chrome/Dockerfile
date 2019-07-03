@@ -1,5 +1,5 @@
-# git clone https://github.com/bingpple/dockerfiles.git
-# cd dockerfiles/serenity_chrome
+# git clone https://github.com/CITANZ/citanz-workshop.git
+# cd citanz-workshop/automation/dockerfiles/serenity_chrome
 
 FROM bingc/serenity_base:latest
 
@@ -15,3 +15,5 @@ RUN CHROME_MAJOR_VERSION=$(google-chrome --version | cut --delimiter=' ' --field
   && CD_VERSION=$(curl -Ls https://chromedriver.storage.googleapis.com/LATEST_RELEASE_${CHROME_MAJOR_VERSION}) \
   && curl -Ls https://chromedriver.storage.googleapis.com/$CD_VERSION/chromedriver_linux64.zip |gunzip > /usr/bin/chromedriver \
   && chmod +x /usr/bin/chromedriver
+
+

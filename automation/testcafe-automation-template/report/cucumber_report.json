@@ -1,0 +1,105 @@
+[
+  {
+    "description": "    As a user\n    I want to login the Google\n    So that I can visit the Sign in page",
+    "keyword": "Feature",
+    "name": "Login Google",
+    "line": 2,
+    "id": "login-google",
+    "tags": [
+      {
+        "name": "@google",
+        "line": 1
+      }
+    ],
+    "uri": "features/google_login.feature",
+    "elements": [
+      {
+        "id": "login-google;verify-google-sign-in-page-could-be-loaded",
+        "keyword": "Scenario",
+        "line": 9,
+        "name": "verify Google sign in page could be loaded",
+        "tags": [
+          {
+            "name": "@google",
+            "line": 1
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "features/support/hooks.js:49"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3598000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "user is on the login page",
+            "match": {
+              "location": "features/step_definitions/login_test.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1118000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 10,
+            "name": "user wants to login",
+            "match": {
+              "location": "features/step_definitions/login_test.js:17"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3450000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 11,
+            "name": "user should be on sign in page",
+            "match": {
+              "location": "features/step_definitions/login_test.js:22"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 365000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "features/support/hooks.js:64"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1000000
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "features/support/hooks.js:59"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
