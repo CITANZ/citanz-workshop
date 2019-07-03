@@ -1,5 +1,6 @@
-# git clone https://github.com/bingpple/dockerfiles.git
-# cd dockerfiles/serenity_base
+# git clone https://github.com/CITANZ/citanz-workshop.git
+# cd citanz-workshop/automation/dockerfiles/serenity_base
+
 FROM openjdk:8
 
 RUN apt-get update \

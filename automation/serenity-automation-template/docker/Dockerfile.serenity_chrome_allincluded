@@ -1,3 +1,8 @@
+# git clone https://github.com/CITANZ/citanz-workshop.git
+# cd citanz-workshop/automation/serenity-automation-template
+# docker build --build-arg UID=$UID --no-cache -t bingc/serenity_chrome_allincluded:latest -f ./Dockerfile.serenity_chrome_allincluded .
+# docker image ls
+
 FROM bingc/serenity_chrome:latest
 
 WORKDIR /src/bdd
