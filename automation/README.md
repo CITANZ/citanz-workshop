@@ -25,3 +25,6 @@ bingc/serenity_chrome_allincluded:latest -o serenity:aggregate
 $: docker cp serenity_bdd_report:/src/bdd/target/site/serenity .
 
 ```
+
+## View Test Report
+Open **./serenity/index.html** in your Browser
