@@ -35,7 +35,7 @@
         "cucumber": "^5.1.0",
         "cucumber-html-reporter": "^4.0.5",
         "eslint": "^4.19.1",
-        "npm": "^6.0.0",
+        "npm": "^6.14.6",
         "testcafe": "^1.1.0"
     },
     "devDependencies": {
